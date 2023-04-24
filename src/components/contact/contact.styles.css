@@ -1,0 +1,47 @@
+.contact {
+  /* background-color: blueviolet; */
+  height: 70px;
+  /* display: flex;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 0.4fr 2.4fr 0.2fr;
+  padding: 13px;
+}
+
+.contact__img {
+  background-color: blue;
+  height: 45px;
+  width: 45px;
+  margin-right: 10px;
+  border-radius: 200px;
+}
+
+.contact__name {
+  font-weight: 500;
+}
+
+.contact__message {
+  color: #adb5bd;
+}
+
+.contact__date-and-message-amount {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+}
+
+.contact__date {
+  color: #adb5bd;
+  font-size: 14px;
+}
+
+.contact__message-amount {
+  background-color: grey;
+  padding: 1px 6.5px;
+  align-self: flex-end;
+  border-radius: 200px;
+  color: #fff;
+  font-size: 14px;
+  width: auto;
+  height: fit-content;
+}

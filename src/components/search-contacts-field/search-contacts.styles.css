@@ -1,0 +1,16 @@
+.search-contacts-field {
+  display: grid;
+  grid-template-columns: 0.3fr 1.7fr;
+  align-items: center;
+  justify-items: start;
+}
+
+.menu-icon {
+  margin: auto;
+}
+
+.search-input {
+  background-color: #f1f3f5;
+  width: 95%;
+  border-radius: 2.8px;
+}
