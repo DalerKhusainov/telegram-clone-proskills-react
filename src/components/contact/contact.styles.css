@@ -1,11 +1,14 @@
 .contact {
   /* background-color: blueviolet; */
   height: 70px;
-  /* display: flex;
-  align-items: center; */
   display: grid;
   grid-template-columns: 0.4fr 2.4fr 0.2fr;
   padding: 13px;
+  transition: all 0.1s;
+}
+
+.contact:hover {
+  background-color: #f1f3f5;
 }
 
 .contact__img {

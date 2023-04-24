@@ -19,25 +19,13 @@ body {
 .contacts-container {
   /* background-color: orangered; */
   display: grid;
-  grid-template-rows: 0.15fr 1.85fr;
+  grid-template-rows: 0.18fr 1.82fr;
 }
 
 .message-container {
-  background-color: grey;
+  /* background-color: grey; */
   display: grid;
-  grid-template-rows: 0.15fr 1.72fr 0.13fr;
-}
-
-.search-message-field {
-  background-color: blueviolet;
-}
-
-.messages-field {
-  background-color: antiquewhite;
-}
-
-.message-input {
-  background-color: brown;
+  grid-template-rows: 0.18fr 1.69fr 0.13fr;
 }
 
 /* .contacts-container {

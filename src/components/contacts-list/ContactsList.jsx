@@ -16,6 +16,12 @@ export const ContactsList = () => {
       <Contact />
       <Contact />
       <Contact />
+      <Contact />
+      <Contact />
+      <Contact />
+      <Contact />
+      <Contact />
+      <Contact />
     </div>
   );
 };
