@@ -8,7 +8,7 @@ export const Contact = ({ contact, onContactClickhandler }) => {
         className="contact"
         onClick={() => onContactClickhandler(contact.contactId)}
       >
-        <div className="contact__img"></div>
+        <img src={contact.contactImgUrl} className="contact__img" alt="" />
         <div className="contact__info">
           <p className="contact__name">{`${contact.contactFirstName} ${contact.contactLastName}`}</p>
           <p className="contact__message">{contact.lastMessage}</p>

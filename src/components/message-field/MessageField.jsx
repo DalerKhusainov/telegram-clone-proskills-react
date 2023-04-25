@@ -19,10 +19,13 @@ export const MessageField = () => {
           <p className="message-date">12:20</p>
         </div>
       </div>
-      <div className="message-text receiver-side">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus
-        gravida quis blandit turpis.
+      <div className="receiver-message-container">
+        <div className="receiver-message-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit
+          amet purus gravida quis blandit turpis.
+        </div>
+        <p className="message-date">12:35</p>
       </div>
     </div>
   );
