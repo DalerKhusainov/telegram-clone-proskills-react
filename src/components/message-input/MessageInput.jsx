@@ -16,10 +16,10 @@ export const MessageInput = () => {
       </div>
       <div className="input-text">
         <InputBase
+          fullWidth={true}
           sx={{ ml: 1, flex: 1 }}
           placeholder="Write a message..."
           //   inputProps={{ "aria-label": "search google maps" }}
-          fullWidth="true"
         />
       </div>
       <IconButton>

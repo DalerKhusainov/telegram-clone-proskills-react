@@ -17,7 +17,7 @@ export default function SearchContacts() {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          fullWidth="true"
+          fullWidth={true}
           placeholder="Search"
         />
       </div>

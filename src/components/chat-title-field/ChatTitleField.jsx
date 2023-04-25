@@ -5,12 +5,21 @@ import TableChartIcon from "@mui/icons-material/TableChart";
 import IconButton from "@mui/material/IconButton";
 import "./chat-title.field.styles.css";
 
-export const ChatTitleField = () => {
+export const ChatTitleField = ({ selectedContact }) => {
   return (
     <div className="chat-field">
       <div className="chat-info">
-        <p className="chat-title">Chat Title</p>
-        <p className="chat-status">Status</p>
+        <p className="chat-title">
+          {selectedContact.map(
+            (contact) =>
+              `${contact.contactFirstName} ${contact.contactLastName}`
+          )}
+        </p>
+        <p className="chat-status">
+          {selectedContact.map((contact) => {
+            return contact.isLogin ? "online" : "offline";
+          })}
+        </p>
       </div>
       <div className="chat-field__icons">
         <IconButton>
