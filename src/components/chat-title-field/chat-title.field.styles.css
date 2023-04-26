@@ -14,12 +14,7 @@
   font-weight: 700;
 }
 
-.chat-status {
-  color: #adb5bd;
-}
-
 .chat-field__icons {
   display: flex;
-  /* column-gap: 5px; */
   margin-right: 5px;
 }

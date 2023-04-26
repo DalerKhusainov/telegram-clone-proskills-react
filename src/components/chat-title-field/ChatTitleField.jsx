@@ -6,6 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import "./chat-title.field.styles.css";
 
 export const ChatTitleField = ({ selectedContact }) => {
+  const isLogin = selectedContact.map((contact) => contact.isLogin);
+
   return (
     <div className="chat-field">
       <div className="chat-info">
@@ -15,7 +17,10 @@ export const ChatTitleField = ({ selectedContact }) => {
               `${contact.contactFirstName} ${contact.contactLastName}`
           )}
         </p>
-        <p className="chat-status">
+        <p
+          className="chat-status"
+          style={{ color: `${isLogin[0] ? "#339af0" : "#fab005"}` }}
+        >
           {selectedContact.map((contact) => {
             return contact.isLogin ? "online" : "offline";
           })}
