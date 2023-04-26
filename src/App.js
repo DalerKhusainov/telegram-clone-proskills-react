@@ -12,12 +12,16 @@ function App() {
   const [filteredContacts, setFilteredContacts] = useState(allContacts);
   const [selectedContact, setSelectedContact] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [chatMessages, setChatMessages] = useState("");
+  const [chatSenderImg, setChatSenderImg] = useState("");
 
   const onContactClickhandler = (id) => {
     const newSelectedContact = contacts.filter(
       (contact) => contact.contactId === id
     );
     setSelectedContact(newSelectedContact);
+    setChatMessages(newSelectedContact[0].lastMessage);
+    setChatSenderImg(newSelectedContact[0].contactImgUrl);
   };
 
   const onSearchHandler = (e) => {
@@ -43,7 +47,10 @@ function App() {
       </div>
       <div className="message-container">
         <ChatTitleField selectedContact={selectedContact} />
-        <MessageField />
+        <MessageField
+          chatMessages={chatMessages}
+          chatSenderImg={chatSenderImg}
+        />
         <MessageInput />
       </div>
     </div>

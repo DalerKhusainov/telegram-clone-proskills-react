@@ -12,21 +12,20 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: "Nunito", sans-serif;
+  /* background-color: #d0ebff;
+  background-color: #e7f5ff; */
+  background-color: #a5d8ff;
 }
 
 .contacts-container {
-  /* background-color: orangered; */
+  background-color: #fff;
   display: grid;
   grid-template-rows: 0.18fr 1.82fr;
 }
 
 .message-container {
-  /* background-color: grey; */
+  background-color: #fff;
   display: grid;
   grid-template-rows: 0.18fr 1.69fr 0.13fr;
 }
-
-/* .contacts-container {
-} */
