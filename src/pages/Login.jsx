@@ -13,13 +13,39 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import "./login.styles.css";
 
+const allUsers = [
+  {
+    name: "Daler",
+    email: "dalerkhusainov85@gmail.com",
+    password: "1010",
+  },
+  {
+    name: "Imran",
+    email: "imrankhusainov85@gmail.com",
+    password: "2020",
+  },
+  {
+    name: "Matin",
+    email: "matinkhusainov85@gmail.com",
+    password: "3030",
+  },
+];
+
 const Login = ({ setUser }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  // const [user, setUser] = useState("");
 
   //   console.log(name);
   //   console.log(password);
+  // console.log(user);
+
+  const onClickLoginHandler = () => {
+    const currentAccount = allUsers.find((acc) => acc.name === name);
+    if (currentAccount?.password === password) setUser(currentAccount.name);
+    else console.log("Not correct");
+  };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -29,16 +55,15 @@ const Login = ({ setUser }) => {
   //     console.log(e.target.value);
   //   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name || !password) return;
-    setUser({ name: name, email: password });
-    navigate("/dashboard");
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!name || !password) return;
+  //   setUser({ name: name, email: password });
+  //   navigate("/dashboard");
+  // };
 
   return (
     <section className="login">
-      {/* <form className="login-form" onSubmit={handleSubmit}> */}
       <h5 className="login-text">login</h5>
       <div className="input-name-field">
         <TextField
@@ -79,7 +104,7 @@ const Login = ({ setUser }) => {
         </FormControl>
       </div>
       <div className="btn-login">
-        <Button size="large" variant="contained">
+        <Button onClick={onClickLoginHandler} size="large" variant="contained">
           log in
         </Button>
       </div>
@@ -110,7 +135,6 @@ const Login = ({ setUser }) => {
         <button type="submit" className="btn btn-block">
           login
         </button> */}
-      {/* </form> */}
     </section>
   );
 };

@@ -9,7 +9,7 @@ import { contacts1 } from "../../data/contacts";
 import { contacts2 } from "../../data/contacts";
 import { contacts3 } from "../../data/contacts";
 
-const AppArea = () => {
+const AppArea = ({ user }) => {
   const [allContacts, setAllContacts] = useState(contacts1);
   const [filteredContacts, setFilteredContacts] = useState(allContacts);
   const [selectedContact, setSelectedContact] = useState([]);
@@ -22,12 +22,21 @@ const AppArea = () => {
     ...contacts3,
   ]);
 
-  const logedInUser = (users, logedInUser) => {
-    const logedUser = users.filter((user) => user.owner === logedInUser);
+  useEffect(() => {
+    const logedUser = allUsersContacts.filter(
+      (userName) => userName.owner === user
+    );
     console.log(logedUser);
-  };
+    setAllContacts(logedUser);
+    setFilteredContacts(logedUser);
+  }, [allUsersContacts, user]);
 
-  logedInUser(allUsersContacts, "Matin");
+  // const logedInUser = (users, logedInUser) => {
+  // };
+
+  // logedInUser(allUsersContacts, user);
+
+  console.log(user);
 
   // console.log(allUsersContacts);
 

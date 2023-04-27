@@ -190,8 +190,8 @@ export const contacts1 = [
 export const contacts2 = [
   {
     contactId: uuid(),
-    contactFirstName: "Sieghard",
-    contactLastName: "Eliot",
+    contactFirstName: "Bekha",
+    contactLastName: "Khusainov",
     contactImgUrl:
       "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&ixid=MnwxfDB8MXxyYW5kb218MHx8cGVvcGxlfHx8fHx8MTY4MjQzOTIwNg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=520",
     isLogin: true,
@@ -377,8 +377,8 @@ export const contacts2 = [
 export const contacts3 = [
   {
     contactId: uuid(),
-    contactFirstName: "Sieghard",
-    contactLastName: "Eliot",
+    contactFirstName: "Shahzoda",
+    contactLastName: "Khusainova",
     contactImgUrl:
       "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&ixid=MnwxfDB8MXxyYW5kb218MHx8cGVvcGxlfHx8fHx8MTY4MjQzOTIwNg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=520",
     isLogin: true,
