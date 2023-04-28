@@ -35,32 +35,19 @@ const Login = ({ setUser }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const [user, setUser] = useState("");
-
-  //   console.log(name);
-  //   console.log(password);
-  // console.log(user);
+  const [textError, setTextError] = useState("");
 
   const onClickLoginHandler = () => {
     const currentAccount = allUsers.find((acc) => acc.name === name);
-    if (currentAccount?.password === password) setUser(currentAccount.name);
-    else console.log("Not correct");
+    if (currentAccount?.password === password) {
+      setUser(currentAccount.name);
+      navigate("/contacts");
+      setTextError("");
+    } else setTextError("The name or password is not correct");
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const navigate = useNavigate();
-
-  //   const onChangePasswordHandler = (e) => {
-  //     console.log(e.target.value);
-  //   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!name || !password) return;
-  //   setUser({ name: name, email: password });
-  //   navigate("/dashboard");
-  // };
 
   return (
     <section className="login">
@@ -104,37 +91,13 @@ const Login = ({ setUser }) => {
         </FormControl>
       </div>
       <div className="btn-login">
+        <p className="login-error-text" style={{ color: "red" }}>
+          {textError}
+        </p>
         <Button onClick={onClickLoginHandler} size="large" variant="contained">
           log in
         </Button>
       </div>
-      {/* <div className="form-row">
-          <label htmlFor="name" className="form-label">
-            name
-          </label>
-          <input
-            type="text"
-            className="form-input"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="form-row">
-          <label htmlFor="email" className="form-label">
-            email
-          </label>
-          <input
-            type="email"
-            className="form-input"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-block">
-          login
-        </button> */}
     </section>
   );
 };

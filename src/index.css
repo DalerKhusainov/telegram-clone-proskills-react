@@ -12,6 +12,7 @@ html {
 }
 
 body {
+  position: relative;
   font-family: "Nunito", sans-serif;
   /* background-color: #d0ebff;
   background-color: #e7f5ff; */

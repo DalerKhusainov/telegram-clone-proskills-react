@@ -6,12 +6,12 @@ import Login from "./pages/Login";
 const App = () => {
   const [user, setUser] = useState("");
 
-  // console.log(user);
-
   return (
     <BrowserRouter>
-      <Login setUser={setUser} />
-      <AppArea user={user} />
+      <Routes>
+        <Route path="/" element={<Login setUser={setUser} />} />
+        <Route path="/contacts" element={<AppArea user={user} />} />
+      </Routes>
     </BrowserRouter>
   );
 };
