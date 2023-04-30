@@ -1,12 +1,11 @@
 .container {
-  background-color: blue;
-  /* display: flex; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* margin: auto; */
+  margin: 110px;
   width: 2400px;
   position: relative;
   top: 0%;
+  transform: translate(14.88%, 50%);
   right: 1200px;
 }
 
@@ -16,22 +15,12 @@
   right: 0;
   height: 850px;
   width: 1200px;
-  /* margin: 50px auto; */
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.menu-area {
-  background-color: orangered;
-  height: 850px;
-  width: 1200px;
-  border-radius: 5px;
-  position: absolute;
-  top: 0;
-  right: 0;
+  z-index: 1;
 }
 
 .contacts-container {

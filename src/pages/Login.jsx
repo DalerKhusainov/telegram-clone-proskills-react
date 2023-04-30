@@ -15,17 +15,20 @@ import "./login.styles.css";
 
 const allUsers = [
   {
-    name: "Daler",
+    firstName: "Daler",
+    lastName: "Khusainov",
     email: "dalerkhusainov85@gmail.com",
     password: "1010",
   },
   {
-    name: "Imran",
+    firstName: "Imran",
+    lastName: "Khusainov",
     email: "imrankhusainov85@gmail.com",
     password: "2020",
   },
   {
-    name: "Matin",
+    firstName: "Matin",
+    lastName: "Khusainov",
     email: "matinkhusainov85@gmail.com",
     password: "3030",
   },
@@ -38,9 +41,9 @@ const Login = ({ setUser }) => {
   const [textError, setTextError] = useState("");
 
   const onClickLoginHandler = () => {
-    const currentAccount = allUsers.find((acc) => acc.name === name);
+    const currentAccount = allUsers.find((acc) => acc.firstName === name);
     if (currentAccount?.password === password) {
-      setUser(currentAccount.name);
+      setUser(`${currentAccount.firstName} ${currentAccount.lastName}`);
       navigate("/contacts");
       setTextError("");
     } else setTextError("The name or password is not correct");

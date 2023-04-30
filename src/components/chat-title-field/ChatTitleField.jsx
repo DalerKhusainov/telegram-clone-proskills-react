@@ -7,6 +7,7 @@ import "./chat-title.field.styles.css";
 
 export const ChatTitleField = ({ selectedContact }) => {
   const isLogin = selectedContact.map((contact) => contact.isLogin);
+  console.log(selectedContact);
 
   return (
     <div className="chat-field">

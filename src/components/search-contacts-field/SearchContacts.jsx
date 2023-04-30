@@ -4,11 +4,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import TextField from "@mui/material/TextField";
 import "./search-contacts.styles.css";
 
-export default function SearchContacts({ onSearchHandler }) {
+export default function SearchContacts({
+  onSearchHandler,
+  menuTransformValue,
+  setMenuTransformValue,
+}) {
   return (
     <div className="search-contacts-field">
       <div className="menu-icon">
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            menuTransformValue === "100"
+              ? setMenuTransformValue("0")
+              : setMenuTransformValue("100");
+          }}
+        >
           <MenuIcon />
         </IconButton>
       </div>

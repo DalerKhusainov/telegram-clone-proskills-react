@@ -1,11 +1,13 @@
 import "./app-area.styles.css";
 import { useState, useEffect } from "react";
+import { setFirstName } from "../../functions/functions";
 
 import SearchContacts from "../search-contacts-field/SearchContacts";
 import { ContactsList } from "../contacts-list/ContactsList";
 import { ChatTitleField } from "../chat-title-field/ChatTitleField";
 import { MessageField } from "../message-field/MessageField";
 import { MessageInput } from "../message-input/MessageInput";
+import { MenuSeсtion } from "../menu-section/MenuSeсtion";
 
 import { contacts1 } from "../../data/contacts";
 import { contacts2 } from "../../data/contacts";
@@ -18,6 +20,7 @@ const AppArea = ({ user }) => {
   const [searchValue, setSearchValue] = useState("");
   const [chatMessages, setChatMessages] = useState("");
   const [chatSenderImg, setChatSenderImg] = useState("");
+  const [menuTransformValue, setMenuTransformValue] = useState("100");
   const [allUsersContacts, setAllUsersContacts] = useState([
     ...contacts1,
     ...contacts2,
@@ -26,10 +29,12 @@ const AppArea = ({ user }) => {
 
   useEffect(() => {
     const logedUser = allUsersContacts.filter(
-      (userName) => userName.owner === user
+      (userName) => userName.owner === setFirstName(user)
     );
     setAllContacts(logedUser);
     setFilteredContacts(logedUser);
+    setChatMessages(logedUser[0].lastMessage);
+    setChatSenderImg(logedUser[0].contactImgUrl);
   }, [allUsersContacts, user]);
 
   const onContactClickHandler = (id) => {
@@ -56,10 +61,19 @@ const AppArea = ({ user }) => {
   return (
     <>
       <div className="container">
-        <div className="menu-area">Menu Area</div>
+        <MenuSeсtion
+          menuTransformValue={menuTransformValue}
+          setMenuTransformValue={setMenuTransformValue}
+          user={user}
+        />
+        <div className="menu-area-2">Menu Area</div>
         <div className="app-area">
           <div className="contacts-container">
-            <SearchContacts onSearchHandler={onSearchHandler} />
+            <SearchContacts
+              onSearchHandler={onSearchHandler}
+              menuTransformValue={menuTransformValue}
+              setMenuTransformValue={setMenuTransformValue}
+            />
             <ContactsList
               contacts={filteredContacts}
               onContactClickhandler={onContactClickHandler}
