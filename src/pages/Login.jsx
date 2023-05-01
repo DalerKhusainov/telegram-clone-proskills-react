@@ -54,14 +54,14 @@ const Login = ({ setUser }) => {
 
   return (
     <section className="login">
-      <h5 className="login-text">login</h5>
+      <h5 className="login-text">log in</h5>
       <div className="input-name-field">
         <TextField
           className="input-name"
           onChange={(e) => setName(e.target.value)}
           fullWidth
           id="outlined-basic"
-          label="Enter name or email"
+          label="Enter name"
           variant="outlined"
         />
       </div>
@@ -101,6 +101,9 @@ const Login = ({ setUser }) => {
           log in
         </Button>
       </div>
+      {/* <div className="register-field">
+        <p>Link</p>
+      </div> */}
     </section>
   );
 };

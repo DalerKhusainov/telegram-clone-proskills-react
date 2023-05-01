@@ -21,6 +21,9 @@ export const MenuSeсtion = ({
   menuTransformValue,
   setMenuTransformValue,
   user,
+  onNightModeHandler,
+  backgroundColor,
+  fontColorDark,
 }) => {
   const [hiddenValue, setHiddenValue] = useState("130");
   const [rotateValue, setRotateValue] = useState("0");
@@ -42,12 +45,20 @@ export const MenuSeсtion = ({
         className="menu-area"
         style={{ transform: `translateX(-${menuTransformValue}%)` }}
       >
-        <div className="menu">
-          <div className="menu-current-account">
+        <div className="menu" style={{ backgroundColor: `${backgroundColor}` }}>
+          <div
+            className="menu-current-account"
+            style={{ backgroundColor: `${backgroundColor}` }}
+          >
             <div className="menu-account-img">{setInitialName(user)}</div>
             <div className="menu-account-name-field">
               <div className="menu-account-name-emoji-fieid">
-                <p className="menu-account-name">{user}</p>
+                <p
+                  className="menu-account-name"
+                  style={{ color: `${fontColorDark}` }}
+                >
+                  {user}
+                </p>
                 <p className="menu-emoji-status">Set Emoji Status</p>
               </div>
               <div
@@ -66,58 +77,82 @@ export const MenuSeсtion = ({
             <div className="menu-btn-add-contact-and-logout-field">
               <div className="add-contact-field">
                 <div className="btn-add-contact">+</div>
-                <p className="btn-add-contact-text">Add contact</p>
+                <p
+                  className="btn-add-contact-text"
+                  style={{ color: `${fontColorDark}` }}
+                >
+                  Add contact
+                </p>
               </div>
               <div className="logout-field" onClick={() => navigate("/")}>
                 <div className="logout-icon">
                   <LogoutIcon fontSize="small" />
                 </div>
-                <p className="logout-text">Log out</p>
+                <p
+                  className="logout-text"
+                  style={{ color: `${fontColorDark}` }}
+                >
+                  Log out
+                </p>
               </div>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-blue">
                 <GroupIcon color="inherit" />
               </div>
-              <p className="btn-name">New Group</p>
+              <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                New Group
+              </p>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-yellow">
                 <CampaignIcon color="inherit" />
               </div>
-              <p className="btn-name">New Channel</p>
+              <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                New Channel
+              </p>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-red">
                 <PersonIcon color="inherit" />
               </div>
-              <p className="btn-name">Contacts</p>
+              <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                Contacts
+              </p>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-green">
                 <LocalPhoneIcon color="inherit" />
               </div>
-              <p className="btn-name">Calls</p>
+              <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                Calls
+              </p>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-blue">
                 <BookmarkIcon color="inherit" />
               </div>
-              <p className="btn-name">Saved Messages</p>
+              <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                Saved Messages
+              </p>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-violet">
                 <SettingsIcon color="inherit" />
               </div>
-              <p className="btn-name">Settings</p>
+              <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                Settings
+              </p>
             </div>
             <div className="menu-button">
               <div className="btn-icon clr-indigo">
                 <BedtimeIcon color="inherit" fontSize="small" />
               </div>
               <div className="btn-night-mode-field">
-                <p className="btn-name">Night Mode</p>
-                <Switch {...label} />
+                <p className="btn-name" style={{ color: `${fontColorDark}` }}>
+                  Night Mode
+                </p>
+                <Switch {...label} onChange={onNightModeHandler} />
               </div>
             </div>
           </div>

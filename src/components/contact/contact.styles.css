@@ -19,6 +19,11 @@
 
 .contact__name {
   font-weight: 500;
+  /* color: #343a40; */
+}
+
+.contact__name:hover {
+  color: #343434;
 }
 
 .contact__message {

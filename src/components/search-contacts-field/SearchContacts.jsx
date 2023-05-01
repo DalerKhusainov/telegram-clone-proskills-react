@@ -8,21 +8,28 @@ export default function SearchContacts({
   onSearchHandler,
   menuTransformValue,
   setMenuTransformValue,
+  searchContactsBackgroundColor,
+  hamburgerMenuColor,
 }) {
   return (
     <div className="search-contacts-field">
-      <div className="menu-icon">
-        <IconButton
-          onClick={() => {
-            menuTransformValue === "100"
-              ? setMenuTransformValue("0")
-              : setMenuTransformValue("100");
-          }}
-        >
+      <div
+        className="menu-icon"
+        style={{ color: `${hamburgerMenuColor}` }}
+        onClick={() => {
+          menuTransformValue === "100"
+            ? setMenuTransformValue("0")
+            : setMenuTransformValue("100");
+        }}
+      >
+        <IconButton color="inherit">
           <MenuIcon />
         </IconButton>
       </div>
-      <div className="search-input">
+      <div
+        className="search-input"
+        style={{ backgroundColor: `${searchContactsBackgroundColor}` }}
+      >
         <TextField
           onChange={onSearchHandler}
           id="outlined-basic"

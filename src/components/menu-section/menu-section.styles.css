@@ -25,7 +25,7 @@
 }
 
 .menu {
-  background-color: #fff;
+  /* background-color: #fff; */
   opacity: 1;
   display: grid;
   grid-template-rows: 0.3fr 1fr 0.14fr;
@@ -33,7 +33,7 @@
 }
 
 .menu-current-account {
-  background-color: #fff;
+  /* background-color: #fff; */
   display: grid;
   grid-template-rows: 1fr 0.7fr;
   z-index: 10;

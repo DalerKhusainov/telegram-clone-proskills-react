@@ -1,7 +1,13 @@
 import React from "react";
 import "./contact.styles.css";
 
-export const Contact = ({ contact, onContactClickhandler }) => {
+export const Contact = ({
+  contact,
+  onContactClickhandler,
+  fontColorDark,
+  hoverBackgroundColor,
+  setHoverBackgroundColor,
+}) => {
   return (
     <>
       <div
@@ -10,7 +16,10 @@ export const Contact = ({ contact, onContactClickhandler }) => {
       >
         <img src={contact.contactImgUrl} className="contact__img" alt="" />
         <div className="contact__info">
-          <p className="contact__name">{`${contact.contactFirstName} ${contact.contactLastName}`}</p>
+          <p
+            className="contact__name"
+            style={{ color: `${fontColorDark}` }}
+          >{`${contact.contactFirstName} ${contact.contactLastName}`}</p>
           <p className="contact__message">{contact.lastMessage}</p>
         </div>
         <div className="contact__date-and-message-amount">
