@@ -1,7 +1,11 @@
 .message-field {
   display: flex;
   flex-direction: column;
-  background-image: url("../../../public/background-img.jpg");
+  background-image: linear-gradient(
+      rgba(0, 0, 136, 0.5),
+      rgba(62, 76, 227, 0.5)
+    ),
+    url("../../../public/background-img.jpg");
   background-size: cover;
   background-position: top;
   overflow-y: scroll;
