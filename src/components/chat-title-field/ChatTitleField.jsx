@@ -5,13 +5,13 @@ import TableChartIcon from "@mui/icons-material/TableChart";
 import IconButton from "@mui/material/IconButton";
 import "./chat-title.field.styles.css";
 
-export const ChatTitleField = ({ selectedContact }) => {
+export const ChatTitleField = ({ selectedContact, fontColorDark }) => {
   const isLogin = selectedContact.map((contact) => contact.isLogin);
 
   return (
     <div className="chat-field">
       <div className="chat-info">
-        <p className="chat-title">
+        <p className="chat-title" style={{ color: `${fontColorDark}` }}>
           {selectedContact.map(
             (contact) =>
               `${contact.contactFirstName} ${contact.contactLastName}`

@@ -13,6 +13,12 @@ import { contacts1 } from "../../data/contacts";
 import { contacts2 } from "../../data/contacts";
 import { contacts3 } from "../../data/contacts";
 
+// const messages = [
+//   {
+//     userId: ''
+//   }
+// ];
+
 const AppArea = ({ user }) => {
   const [allContacts, setAllContacts] = useState(contacts1);
   const [filteredContacts, setFilteredContacts] = useState(allContacts);
@@ -23,7 +29,6 @@ const AppArea = ({ user }) => {
   const [menuTransformValue, setMenuTransformValue] = useState("100");
   const [backgroundColor, setBackgroundColor] = useState("#fff");
   const [fontColorDark, setFontColorDark] = useState("#343a40");
-  const [fontColorLight, setFontColorLight] = useState("#adb5bd");
   const [hoverBackgroundColor, setHoverBackgroundColor] = useState("#fff");
   const [hamburgerMenuColor, setHamburgerMenuColor] = useState("#343a40");
   const [searchContactsBackgroundColor, setSearchContactsBackgroundColor] =
@@ -83,7 +88,7 @@ const AppArea = ({ user }) => {
       setSearchContactsBackgroundColor("#868e96");
       setHamburgerMenuColor("#868e96");
     } else {
-      setBackgroundColor("#fff");
+      setBackgroundColor("#f8f9fa");
       setFontColorDark("#343a40");
       setSearchContactsBackgroundColor("#f1f3f5");
       setHamburgerMenuColor("#343a40");
@@ -126,7 +131,10 @@ const AppArea = ({ user }) => {
             className="message-container"
             style={{ backgroundColor: `${backgroundColor}` }}
           >
-            <ChatTitleField selectedContact={selectedContact} />
+            <ChatTitleField
+              selectedContact={selectedContact}
+              fontColorDark={fontColorDark}
+            />
             <MessageField
               chatMessages={chatMessages}
               chatSenderImg={chatSenderImg}
