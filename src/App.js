@@ -5,14 +5,27 @@ import Login from "./pages/Login";
 import "./App.css";
 
 const App = () => {
-  const [user, setUser] = useState("");
   const [userFullName, setUserFullName] = useState("");
+  const [currentUser, setCurrentUser] = useState([]);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login setUser={setUser} />} />
-        <Route path="/contacts" element={<AppArea user={user} />} />
+        <Route
+          path="/"
+          element={
+            <Login
+              setUserFullName={setUserFullName}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <AppArea userFullName={userFullName} currentUser={currentUser} />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

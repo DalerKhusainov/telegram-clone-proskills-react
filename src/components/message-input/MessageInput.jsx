@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useRef } from "react";
+import { v4 as uuid } from "uuid";
+import { setNewDate } from "../../functions/functions";
+import "./message-input.styles.css";
+
 import InputBase from "@mui/material/InputBase";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
-import "./message-input.styles.css";
 
-export const MessageInput = () => {
+export const MessageInput = ({
+  selectedContact,
+  currentUser,
+  setMessage,
+  message,
+}) => {
+  const selectedContactId = selectedContact.map((contact) => contact.contactId);
+  const inputMessageRef = useRef();
+
+  //////////////////////////////////////////////////////////////////////////
+  ///// HANDLER WHICH CREATES THE OBJECT OF MESSAGE
+  const onMessageClickHandler = () => {
+    const inputMessage = inputMessageRef.current.value;
+    if (inputMessage === "") return;
+    inputMessageRef.current.value = null;
+
+    setMessage([
+      ...message,
+      {
+        messageId: uuid(),
+        senderId: `${currentUser.userId}`,
+        receiverId: `${selectedContactId[0]}`,
+        message: `${inputMessage}`,
+        date: setNewDate(),
+      },
+    ]);
+  };
+
   return (
     <div className="message-input">
       <div className="attach-icon">
@@ -19,13 +49,13 @@ export const MessageInput = () => {
           fullWidth={true}
           sx={{ ml: 1, flex: 1 }}
           placeholder="Write a message..."
-          //   inputProps={{ "aria-label": "search google maps" }}
+          inputRef={inputMessageRef}
         />
       </div>
       <IconButton>
         <SentimentSatisfiedAltIcon />
       </IconButton>
-      <IconButton>
+      <IconButton onClick={onMessageClickHandler}>
         <SendIcon color="primary" />
       </IconButton>
     </div>

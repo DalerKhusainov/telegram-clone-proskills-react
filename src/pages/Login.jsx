@@ -11,39 +11,21 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { useNavigate } from "react-router-dom";
+import { users } from "../data/users";
 import "./login.styles.css";
 
-const allUsers = [
-  {
-    firstName: "Daler",
-    lastName: "Khusainov",
-    email: "dalerkhusainov85@gmail.com",
-    password: "1010",
-  },
-  {
-    firstName: "Imran",
-    lastName: "Khusainov",
-    email: "imrankhusainov85@gmail.com",
-    password: "2020",
-  },
-  {
-    firstName: "Matin",
-    lastName: "Khusainov",
-    email: "matinkhusainov85@gmail.com",
-    password: "3030",
-  },
-];
-
-const Login = ({ setUser }) => {
+const Login = ({ setUserFullName, setCurrentUser }) => {
   const [name, setName] = useState("");
+  const [allUsers, setAllUsers] = useState(users);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [textError, setTextError] = useState("");
 
   const onClickLoginHandler = () => {
     const currentAccount = allUsers.find((acc) => acc.firstName === name);
+    setCurrentUser(currentAccount);
     if (currentAccount?.password === password) {
-      setUser(`${currentAccount.firstName} ${currentAccount.lastName}`);
+      setUserFullName(`${currentAccount.firstName} ${currentAccount.lastName}`);
       navigate("/contacts");
       setTextError("");
     } else setTextError("The name or password is not correct");

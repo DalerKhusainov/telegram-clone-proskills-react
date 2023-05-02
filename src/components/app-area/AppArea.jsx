@@ -13,56 +13,74 @@ import { contacts1 } from "../../data/contacts";
 import { contacts2 } from "../../data/contacts";
 import { contacts3 } from "../../data/contacts";
 
-// const messages = [
-//   {
-//     userId: ''
-//   }
-// ];
-
-const AppArea = ({ user }) => {
+const AppArea = ({ userFullName, currentUser }) => {
+  //////////////////////////////////////////////////////////////////////////
+  ///// STATES
   const [allContacts, setAllContacts] = useState(contacts1);
   const [filteredContacts, setFilteredContacts] = useState(allContacts);
+  const [message, setMessage] = useState([]);
+  const [filteredMessage, setFilteredMessage] = useState([]);
+
   const [selectedContact, setSelectedContact] = useState([]);
+  const [clickedContactId, setClickedContactId] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [chatMessages, setChatMessages] = useState("");
   const [chatSenderImg, setChatSenderImg] = useState("");
-  const [menuTransformValue, setMenuTransformValue] = useState("100");
-  const [backgroundColor, setBackgroundColor] = useState("#fff");
-  const [fontColorDark, setFontColorDark] = useState("#343a40");
-  const [hoverBackgroundColor, setHoverBackgroundColor] = useState("#fff");
-  const [hamburgerMenuColor, setHamburgerMenuColor] = useState("#343a40");
-  const [searchContactsBackgroundColor, setSearchContactsBackgroundColor] =
-    useState("#f1f3f5");
+
+  // THIS STATE INITIALLY CONTAINS ALL CONTACTS OF APP USERS
   const [allUsersContacts, setAllUsersContacts] = useState([
     ...contacts1,
     ...contacts2,
     ...contacts3,
   ]);
 
+  // THIS STATE CONTAINS THE VALUE FOR MOVING THE MenuSection.jsx
+  const [menuTransformValue, setMenuTransformValue] = useState("100");
+
+  // THESE STATES CONTAIN THE DEFAULT VALUES FOR DARKMODE
+  const [backgroundColor, setBackgroundColor] = useState("#fff");
+  const [fontColorDark, setFontColorDark] = useState("#343a40");
+  const [hoverBackgroundColor, setHoverBackgroundColor] = useState("#fff");
+  const [hamburgerMenuColor, setHamburgerMenuColor] = useState("#343a40");
+  const [searchContactsBackgroundColor, setSearchContactsBackgroundColor] =
+    useState("#f1f3f5");
+
   //////////////////////////////////////////////////////////////////////////
   ///// FILTER METHOD WHICH TAKES VALUE FROM LOGIN COMPONENT AND FILTER THE CURRNET
   ///// ACCOUNT TO THE APP
   useEffect(() => {
     const logedUser = allUsersContacts.filter(
-      (userName) => userName.owner === setFirstName(user)
+      (userName) => userName.owner === setFirstName(userFullName)
     );
     setAllContacts(logedUser);
     setFilteredContacts(logedUser);
     setChatMessages(logedUser[0].lastMessage);
     setChatSenderImg(logedUser[0].contactImgUrl);
-  }, [allUsersContacts, user]);
+  }, [allUsersContacts, userFullName]);
 
   //////////////////////////////////////////////////////////////////////////
-  ///// CLICK HANDLER WHICH SELECT A CONTACT AND DISPLAYS IT TO MESSAGE FIELD
+  ///// CLICK HANDLER WHICH SELECT A CONTACT AND DISPLAYS THE CONTACT NAME TO ChatTitleField.jsx
   ///// ALSO IT SETS DEFAULT MESSAGE TO MESSAGE FIELD
   const onContactClickHandler = (id) => {
     const newSelectedContact = filteredContacts.filter(
       (contact) => contact.contactId === id
     );
     setSelectedContact(newSelectedContact);
+    setClickedContactId(id);
     setChatMessages(newSelectedContact[0].lastMessage);
     setChatSenderImg(newSelectedContact[0].contactImgUrl);
   };
+
+  //////////////////////////////////////////////////////////////////////////
+  ///// CLICK HANDLER WHICH SELECT A CONTACT AND DISPLAYS THE CHAT TO MessageField.jsx
+  useEffect(() => {
+    const newFilteredMessages = message.filter(
+      (message) =>
+        message.receiverId === clickedContactId &&
+        message.senderId === currentUser.userId
+    );
+    setFilteredMessage(newFilteredMessages);
+  }, [message, clickedContactId, currentUser]);
 
   //////////////////////////////////////////////////////////////////////////
   ///// THE INPUT HANDLER WHICH TAKES VALUE FROM SEARCH CONTACTS FIELD
@@ -80,6 +98,8 @@ const AppArea = ({ user }) => {
     setFilteredContacts(newFilteredContact);
   }, [allContacts, searchValue]);
 
+  //////////////////////////////////////////////////////////////////////////
+  ///// DARK MODE TOGGLE HANDLER
   const onNightModeHandler = (e) => {
     const isOn = e.target.checked;
     if (isOn === true) {
@@ -101,7 +121,7 @@ const AppArea = ({ user }) => {
         <MenuSeсtion
           menuTransformValue={menuTransformValue}
           setMenuTransformValue={setMenuTransformValue}
-          user={user}
+          user={userFullName}
           onNightModeHandler={onNightModeHandler}
           backgroundColor={backgroundColor}
           fontColorDark={fontColorDark}
@@ -138,8 +158,14 @@ const AppArea = ({ user }) => {
             <MessageField
               chatMessages={chatMessages}
               chatSenderImg={chatSenderImg}
+              filteredMessage={filteredMessage}
             />
-            <MessageInput />
+            <MessageInput
+              selectedContact={selectedContact}
+              currentUser={currentUser}
+              setMessage={setMessage}
+              message={message}
+            />
           </div>
         </div>
       </div>
