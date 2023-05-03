@@ -12,6 +12,7 @@ import { MenuSeсtion } from "../menu-section/MenuSeсtion";
 import { contacts1 } from "../../data/contacts";
 import { contacts2 } from "../../data/contacts";
 import { contacts3 } from "../../data/contacts";
+import { LOCALE_STORAGE_KEY_MESSAGES } from "../../configs/configs";
 
 const AppArea = ({ userFullName, currentUser }) => {
   //////////////////////////////////////////////////////////////////////////
@@ -44,6 +45,22 @@ const AppArea = ({ userFullName, currentUser }) => {
   const [hamburgerMenuColor, setHamburgerMenuColor] = useState("#343a40");
   const [searchContactsBackgroundColor, setSearchContactsBackgroundColor] =
     useState("#f1f3f5");
+
+  ///////////////////////////////////////////////////////////
+  /////// GETTING DATA FROM LOCALE STORAGE
+  useEffect(() => {
+    const storedMessages = JSON.parse(
+      localStorage.getItem(LOCALE_STORAGE_KEY_MESSAGES)
+    );
+    if (!storedMessages) return;
+    setMessage(storedMessages);
+  }, []);
+
+  ///////////////////////////////////////////////////////////
+  /////// STORING DATA TO LOCALE STORAGE
+  useEffect(() => {
+    localStorage.setItem(LOCALE_STORAGE_KEY_MESSAGES, JSON.stringify(message));
+  }, [message]);
 
   //////////////////////////////////////////////////////////////////////////
   ///// FILTER METHOD WHICH TAKES VALUE FROM LOGIN COMPONENT AND FILTER THE CURRNET

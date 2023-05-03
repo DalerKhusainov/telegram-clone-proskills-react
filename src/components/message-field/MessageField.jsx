@@ -21,7 +21,7 @@ export const MessageField = ({
       </div>
       {filteredMessage.map((message) => (
         <>
-          <div className="sender-message-container">
+          <div key={message.messageId} className="sender-message-container">
             <div className="sender-message-text">{message.message}</div>
             <p className="message-date">{message.date}</p>
           </div>
