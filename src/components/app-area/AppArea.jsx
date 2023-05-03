@@ -12,11 +12,20 @@ import { MenuSeсtion } from "../menu-section/MenuSeсtion";
 import { contacts1 } from "../../data/contacts";
 import { contacts2 } from "../../data/contacts";
 import { contacts3 } from "../../data/contacts";
+// import { users } from "../../data/users";
+
 import { LOCALE_STORAGE_KEY_MESSAGES } from "../../configs/configs";
+import { LOCALE_STORAGE_KEY_CONTACTS } from "../../configs/configs";
 
 const AppArea = ({ userFullName, currentUser }) => {
   //////////////////////////////////////////////////////////////////////////
   ///// STATES
+  // THIS STATE INITIALLY CONTAINS ALL CONTACTS OF APP USERS
+  const [allUsersContacts, setAllUsersContacts] = useState([
+    ...contacts1,
+    ...contacts2,
+    ...contacts3,
+  ]);
   const [allContacts, setAllContacts] = useState(contacts1);
   const [filteredContacts, setFilteredContacts] = useState(allContacts);
   const [message, setMessage] = useState([]);
@@ -27,13 +36,6 @@ const AppArea = ({ userFullName, currentUser }) => {
   const [searchValue, setSearchValue] = useState("");
   const [chatMessages, setChatMessages] = useState("");
   const [chatSenderImg, setChatSenderImg] = useState("");
-
-  // THIS STATE INITIALLY CONTAINS ALL CONTACTS OF APP USERS
-  const [allUsersContacts, setAllUsersContacts] = useState([
-    ...contacts1,
-    ...contacts2,
-    ...contacts3,
-  ]);
 
   // THIS STATE CONTAINS THE VALUE FOR MOVING THE MenuSection.jsx
   const [menuTransformValue, setMenuTransformValue] = useState("100");
@@ -47,7 +49,26 @@ const AppArea = ({ userFullName, currentUser }) => {
     useState("#f1f3f5");
 
   ///////////////////////////////////////////////////////////
-  /////// GETTING DATA FROM LOCALE STORAGE
+  /////// GETTING CONTACTS DATA FROM LOCALE STORAGE
+  useEffect(() => {
+    const storedContacts = JSON.parse(
+      localStorage.getItem(LOCALE_STORAGE_KEY_CONTACTS)
+    );
+    if (!storedContacts) return;
+    setAllUsersContacts(storedContacts);
+  }, []);
+
+  ///////////////////////////////////////////////////////////
+  /////// STORING CONTACTS DATA TO LOCALE STORAGE
+  useEffect(() => {
+    localStorage.setItem(
+      LOCALE_STORAGE_KEY_CONTACTS,
+      JSON.stringify(allUsersContacts)
+    );
+  }, [allUsersContacts]);
+
+  ///////////////////////////////////////////////////////////
+  /////// GETTING MESSAGE DATA FROM LOCALE STORAGE
   useEffect(() => {
     const storedMessages = JSON.parse(
       localStorage.getItem(LOCALE_STORAGE_KEY_MESSAGES)
@@ -57,7 +78,7 @@ const AppArea = ({ userFullName, currentUser }) => {
   }, []);
 
   ///////////////////////////////////////////////////////////
-  /////// STORING DATA TO LOCALE STORAGE
+  /////// STORING MESSAGE DATA TO LOCALE STORAGE
   useEffect(() => {
     localStorage.setItem(LOCALE_STORAGE_KEY_MESSAGES, JSON.stringify(message));
   }, [message]);

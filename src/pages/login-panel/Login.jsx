@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -10,17 +10,38 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { useNavigate } from "react-router-dom";
-import { users } from "../data/users";
+import { useNavigate, Link } from "react-router-dom";
+import { users } from "../../data/users";
+import { LOCALE_STORAGE_KEY_USERS } from "../../configs/configs";
 import "./login.styles.css";
 
 const Login = ({ setUserFullName, setCurrentUser }) => {
+  ///////////////////////////////////////////////////////////
+  /////// STATES
   const [name, setName] = useState("");
   const [allUsers, setAllUsers] = useState(users);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [textError, setTextError] = useState("");
 
+  ///////////////////////////////////////////////////////////
+  /////// GETTING DATA FROM LOCALE STORAGE
+  useEffect(() => {
+    const storedUsers = JSON.parse(
+      localStorage.getItem(LOCALE_STORAGE_KEY_USERS)
+    );
+    if (!storedUsers) return;
+    setAllUsers(storedUsers);
+  }, []);
+
+  ///////////////////////////////////////////////////////////
+  /////// STORING DATA TO LOCALE STORAGE
+  useEffect(() => {
+    localStorage.setItem(LOCALE_STORAGE_KEY_USERS, JSON.stringify(allUsers));
+  }, [allUsers]);
+
+  ///////////////////////////////////////////////////////////
+  /////// HANDLER WHICH SELECT THE LOGED USER FROM ALLUSERS STATE
   const onClickLoginHandler = () => {
     const currentAccount = allUsers.find((acc) => acc.firstName === name);
     setCurrentUser(currentAccount);
@@ -31,7 +52,12 @@ const Login = ({ setUserFullName, setCurrentUser }) => {
     } else setTextError("The name or password is not correct");
   };
 
+  ///////////////////////////////////////////////////////////
+  /////// SPECIAL FUNCTION FROM MATERIAL UI'S COMPONENT
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  ///////////////////////////////////////////////////////////
+  /////// REACT ROUTER FUNCTION
   const navigate = useNavigate();
 
   return (
@@ -84,7 +110,7 @@ const Login = ({ setUserFullName, setCurrentUser }) => {
         </Button>
       </div>
       {/* <div className="register-field">
-        <p>Link</p>
+        <Link to="/register">Register</Link>
       </div> */}
     </section>
   );

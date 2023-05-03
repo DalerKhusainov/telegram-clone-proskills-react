@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppArea from "./components/app-area/AppArea";
-import Login from "./pages/Login";
+import Login from "./pages/login-panel/Login";
+// import { RegisterPanel } from "./pages/register-panel/RegisterPanel";
 import "./App.css";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
             />
           }
         />
+        {/* <Route path="/register" element={<RegisterPanel />} /> */}
         <Route
           path="/contacts"
           element={
